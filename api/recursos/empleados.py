@@ -27,6 +27,7 @@ class empleadoslista(Resource):
     @api.expect(empleado)
     @api.marshal_with(empleado)
     def post(self):
+        """Alta de empleado"""
         reg = api.payload
         empleadonuevo = EmployeeModel(employee_id= reg['employee_id'], name= reg['name'], age=reg['age'], position=reg['position'] )
         db.session.add(empleadonuevo)

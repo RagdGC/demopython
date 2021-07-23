@@ -1,0 +1,14 @@
+{% extends "empleados/info.html" %}
+
+{% block titulo %}Detalle empleado{% endblock %}
+
+{% block botones %}
+<div class="row">
+    <div class="col-2">
+        <a class="btn btn-primary" href="{{ url_for('editarempleado', id =empleado.employee_id) }}"><span class="text-white">Editar</span></a>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-secondary" href="{{ url_for('eliminarempleado', id =empleado.employee_id) }}"><span class="text-white">Eliminar</span></a>
+    </div>
+</div>
+{% endblock %}

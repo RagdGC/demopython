@@ -1,3 +1,24 @@
 {% extends "_layout.html" %}
 
 {% block titulo %}Lista de empleados{% endblock %}
+
+{% block contenido %}
+
+<div class="container-fluid">
+    <div class="row">
+        <h4 class="col-auto">Lista de empleados</h4>
+    </div>
+    <ul>
+        {% for empleado in empleados %}
+        <li class="row">
+            <a class="col-3" href="{{ url_for('consultarempleado', id =empleado.id) }}">{{empleado.name}}</a>
+            <span class="col-1">{{empleado.age}}</span>
+            <span class="col-3">{{empleado.position}}</span>
+            <a class="col-2" href="{{ url_for('editarempleado', id =empleado.employee_id) }}">Actualizar</a>
+            <a class="col-2" href="{{ url_for('eliminarempleado', id =empleado.employee_id) }}">Borrar</a>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

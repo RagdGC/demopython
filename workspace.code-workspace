@@ -1,0 +1,62 @@
+{
+    "folders": [
+		{
+			"path": "api"
+		},
+		{
+			"path": "webclient"
+		}
+	],
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "pwa-chrome",
+				"request": "launch",
+				"name": "Chrome WebClient",
+				"url": "http://localhost:5000",
+				"webRoot": "${workspaceFolder:api}"
+			},
+			{
+				"name": "Python: API",
+				"type": "python",
+				"request": "launch",
+				"module": "flask",
+				"cwd": "${workspaceFolder:api}",
+				"env": {
+					"FLASK_APP": "app.py",
+					"FLASK_ENV": "development"
+				},
+				"args": [
+					"run",
+					"--no-debugger",
+					"--port", "5001"
+				],
+				"jinja": true
+			},
+			{
+				"name": "Python: WebClient",
+				"type": "python",
+				"request": "launch",
+				"module": "flask",
+				"cwd": "${workspaceFolder:webclient}",
+				"env": {
+					"FLASK_APP": "app.py",
+					"FLASK_ENV": "development"
+				},
+				"args": [
+					"run",
+					"--no-debugger",
+					"--port", "5000"
+				],
+				"jinja": true
+			}
+		],
+		"compounds": [
+			{
+				"name": "API/WebClient",
+				"configurations": ["Python: API", "Python: WebClient", "Chrome WebClient"]
+			}
+		]
+	}
+}
