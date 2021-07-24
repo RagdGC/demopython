@@ -1,11 +1,11 @@
 from flask import Flask
-# from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.middleware.proxy_fix import ProxyFix
 from flask_cors import CORS
 from recursos import api
 
 app = Flask(__name__)
 
-# app.wsgi_app = ProxyFix(app.wsgi_app)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 CORS(app, resources={r'/*': {'origins': '*'}})
 
