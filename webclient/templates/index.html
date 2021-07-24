@@ -1,3 +1,15 @@
 {% extends "_layout.html" %}
 
-{% block titulo %}Empleados{% endblock %}
+{% block titulo %}Demo Python{% endblock %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <h1>Demos Python</h1>
+    </div>
+    <hr>
+    <div class="row">
+        <h2><a href="{{ url_for('listaempleados') }}">WebClient con llamadas a API</a></h2>
+    </div>
+</div>
+{% endblock %}
