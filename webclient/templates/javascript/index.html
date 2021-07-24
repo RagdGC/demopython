@@ -8,9 +8,7 @@
         <h4 class="col-auto">Ejemplo Javascript</h4>
     </div>
     <div class="form-group row">
-        <div class="col-1">
-            <label for="estado">Estado</label>
-        </div>
+        <label for="estado" class="col-1 col-form-label">Estado</label>
         <div class="col-3">
             <select name="estado" id="estado" class="form-control form-control-sm">
                 {% for estado in estados %}
@@ -20,9 +18,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-1">
-            <label for="municipio">Municipio</label>
-        </div>
+        <label for="municipio" class="col-1 col-form-label">Municipio</label>
         <div class="col-3">
             <select name="municipio" id="municipio" class="form-control form-control-sm">
                 {% for municipio in municipios %}
