@@ -1,0 +1,57 @@
+{% extends "_layout.html" %}
+
+{% block titulo %}Ejemplo Javascript{% endblock %}
+
+{% block contenido %}
+<div class="container-fluid">
+    <div class="row">
+        <h4 class="col-auto">Ejemplo Javascript</h4>
+    </div>
+    <div class="form-group row">
+        <div class="col-1">
+            <label for="estado">Estado</label>
+        </div>
+        <div class="col-3">
+            <select name="estado" id="estado" class="form-control form-control-sm">
+                {% for estado in estados %}
+                    <option value="{{ estado.id }}">{{ estado.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-1">
+            <label for="municipio">Municipio</label>
+        </div>
+        <div class="col-3">
+            <select name="municipio" id="municipio" class="form-control form-control-sm">
+                {% for municipio in municipios %}
+                    <option value="{{ municipio.id }}">{{ municipio.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    let estadoselect = document.getElementById('estado');
+    let municipioselect = document.getElementById('municipio');
+
+    estadoselect.onchange = function() {
+      estadoid = estadoselect.value;
+      
+      fetch('http://localhost:5001/municipios/' + estadoid ).then(function(respuesta){
+          respuesta.json().then(function(datos) {
+              let opcionesHtml = '';
+
+              for (let municipio of datos) {
+                  opcionesHtml += '<option value=' + municipio.id + '">' + municipio.nombre + '</option>';
+              }
+              municipioselect.innerHTML = opcionesHtml;
+          });
+      });
+    };
+</script>
+{% endblock %}

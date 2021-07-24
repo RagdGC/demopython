@@ -67,3 +67,11 @@ def eliminarempleadoapi(id):
     endpoint = urlapi + "empleados/" + str(id)
     respuesta = requests.delete(endpoint)
     return redirect("/empleados")
+
+@app.route('/javascript')
+def listas():
+    endpoint = urlapi + "estados/"
+    respuestaestados = requests.get(endpoint)
+    endpoint = urlapi + "municipios/1"
+    respuestamunicipios = requests.get(endpoint)
+    return render_template("/javascript/index.html", estados = respuestaestados.json(), municipios = respuestamunicipios.json())
