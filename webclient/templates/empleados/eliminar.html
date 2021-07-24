@@ -1,0 +1,16 @@
+{% extends "empleados/info.html" %}
+
+{% block titulo %}Detalle empleado{% endblock %}
+
+{% block botones %}
+<div class="row">
+    <div class="col-2">
+        <form method="POST">
+            <input class="btn btn-primary" type="submit" value="Borrar empleado" >
+        </form>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-secondary" href="{{ url_for('listaempleados') }}"><span class="text-white">Regresar a lista</span></a>
+    </div>
+</div>
+{% endblock %}

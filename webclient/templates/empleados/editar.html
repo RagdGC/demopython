@@ -1,17 +1,17 @@
 {% extends "_layout.html" %}
 
-{% block titulo %}Nuevo empleado{% endblock %}
+{% block titulo %}Editar empleado{% endblock %}
 
 {% block contenido %}
 <div class="container">
     <div class="row">
-        <h4>Nuevo empleado</h4>
+        <h4>Editar empleado</h4>
     </div>
     <form method="POST">
         {% include "empleados/formulario.html" %}
         <div class="row">
             <div class="col-3">
-                <input class="btn btn-primary" type="submit" value="Agregar empleado">
+                <input class="btn btn-primary" type="submit" value="Guardar empleado">
             </div>
             <div class="col-3">
                 <input class="btn btn-secondary" type="reset" value="Restablecer formulario">
