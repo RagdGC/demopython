@@ -28,7 +28,7 @@ class municipioslista(Resource):
 @api.route("/<int:estadoid>")
 @api.param("estadoid", "id del estado")
 @api.response(404, "Estado no encontrado")
-class getempleado(Resource):
+class getmunicipiosporestadoid(Resource):
     @api.doc("get_municipiosporestadoid")
     @api.marshal_list_with(municipio)
     def get(self, estadoid):
