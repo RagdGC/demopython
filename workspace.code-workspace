@@ -41,7 +41,7 @@
 				"module": "flask",
 				"cwd": "${workspaceFolder:webclient}",
 				"env": {
-					"FLASK_APP": "app.py",
+					"FLASK_APP": "webclient",
 					"FLASK_ENV": "development"
 				},
 				"args": [
