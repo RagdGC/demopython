@@ -19,3 +19,37 @@ class EmployeeModel(db.Model):
  
     def __repr__(self):
         return f"{self.name}:{self.employee_id}"
+
+class EstadoModel(db.Model):
+    __tablename__ = "estado"
+
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100))
+
+    def __init__(self) -> None:
+        super().__init__()
+
+    def __init__(self, id, nombre ):
+        self.id = id
+        self.nombre = nombre
+
+    def __repr__(self):
+        return f"{self.id} {self.nombre}" 
+
+class MunicipioModel(db.Model):
+    __tablename__ = "municipio"
+
+    id = db.Column(db.Integer, primary_key=True)
+    estado_id = db.Column(db.Integer)
+    nombre = db.Column(db.String(100))
+
+    def __init__(self) -> None:
+        super().__init__()
+
+    def __init__(self, id, estado_id, nombre ):
+        self.id = id
+        self.estado_id = estado_id
+        self.nombre = nombre
+
+    def __repr__(self):
+        return f"{self.estado_id}-{self.id} {self.nombre}" 
