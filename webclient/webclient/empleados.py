@@ -23,7 +23,9 @@ def guardarempleadonuevo():
     empleadonuevo = {"employee_id": request.form["employee_id"],
     "name": request.form["name"],
     "age": request.form["age"],
-    "position": request.form["position"] }
+    "position": request.form["position"],
+    "fechaingreso": request.form["fechaingreso"]
+     }
     resultado = requests.post(endpoint, json = empleadonuevo )
     return redirect(url_for("empleados.listaempleados"))
 

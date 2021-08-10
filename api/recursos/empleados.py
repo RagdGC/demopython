@@ -1,5 +1,6 @@
 from flask_restx import Namespace, Resource, fields
 from models import EmployeeModel, db
+import datetime
 
 api = Namespace("empleados", description="Operaciones con empleados")
 
@@ -10,7 +11,8 @@ empleado = api.model(
         "employee_id": fields.Integer(),
         "name": fields.String(),
         "age": fields.Integer(),
-        "position": fields.String()
+        "position": fields.String(),
+        "fechaingreso": fields.Date()
     }
 )
 
@@ -29,7 +31,9 @@ class empleadoslista(Resource):
     def post(self):
         """Alta de empleado"""
         reg = api.payload
-        empleadonuevo = EmployeeModel(employee_id= reg['employee_id'], name= reg['name'], age=reg['age'], position=reg['position'] )
+        empleadonuevo = EmployeeModel(employee_id= reg['employee_id'], 
+        name= reg['name'], age=reg['age'], position=reg['position'], 
+        fechaingreso= datetime.datetime.strptime(reg['fechaingreso'], '%Y-%m-%d').date())
         db.session.add(empleadonuevo)
         db.session.commit()
         return
@@ -70,6 +74,7 @@ class getempleado(Resource):
             empleadoactualizar.name = reg['name']
             empleadoactualizar.age = reg['age']
             empleadoactualizar.position = reg['position']
+            empleadoactualizar.fechaingreso = reg['fechaingreso']
             db.session.merge(empleadoactualizar)
             db.session.commit()
             return 201

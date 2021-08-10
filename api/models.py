@@ -12,12 +12,14 @@ class EmployeeModel(db.Model):
     name = db.Column(db.String())
     age = db.Column(db.Integer())
     position = db.Column(db.String(80))
+    fechaingreso = db.Column(db.Date())
  
-    def __init__(self, employee_id,name,age,position):
+    def __init__(self, employee_id, name, age, position, fechaingreso):
         self.employee_id = employee_id
         self.name = name
         self.age = age
         self.position = position
+        self.fechaingreso = fechaingreso
  
     def __repr__(self):
         return f"{self.name}:{self.employee_id}"

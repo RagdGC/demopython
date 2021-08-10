@@ -1,6 +1,10 @@
+import datetime
 from flask import Blueprint, render_template, json
 import requests
+from werkzeug import datastructures
 from wtforms import validators
+from wtforms.fields.core import DateField
+import datetime
 
 urlapi = 'http://localhost:5001/'
 
@@ -14,7 +18,14 @@ def index():
 def editarempleado(id):
     endpoint = urlapi + "empleados/" + str(id)
     respuesta = requests.get(endpoint)
-    empleado =respuesta.json()
+    datos = respuesta.json()
+    empleado = {
+        'employee_id': datos['employee_id'],
+        'name': datos['name'],
+        'age': datos['age'],
+        'position':  datos['position'],
+        'fechaingreso':  datetime.date.fromisoformat(datos['fechaingreso'])
+    }
     form = EmpleadoForm(data=empleado)
     return render_template("forms/editar.html", form = form)
 
@@ -22,14 +33,14 @@ def editarempleado(id):
 def guardarempleado(id):
     form = EmpleadoForm()
     form.validate()
-    # endpoint = urlapi + "empleados/" + str(id)
-    # empleadoactualizar = {"employee_id": request.form["employee_id"],
-    # "name": request.form["name"],
-    # "age": request.form["age"],
-    # "position": request.form["position"] }
+    endpoint = urlapi + "empleados/" + str(id)
+    empleadoactualizar = {"employee_id": form.employee_id.data,
+    "name": form.name.data,
+    "age": form.age.data,
+    "position": form.position.data,
+    "fechaingreso": form.fechaingreso.data.isoformat() }
     # resultado = requests.put(endpoint, json = empleadoactualizar )
     return render_template("forms/editar.html", form = form)
-
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
@@ -40,3 +51,4 @@ class EmpleadoForm(FlaskForm):
     name = StringField('Nombre', validators=[DataRequired(), Length(min=2, max=50, message="El nombre debe tener entre 2 y 50 caracteres")])
     age = IntegerField('Edad', validators=[DataRequired(), NumberRange(min=13, max=90, message="La edad debe estar entre 13 y 90")])
     position = StringField('Puesto', validators=[DataRequired()])
+    fechaingreso = DateField('Fecha Ingreso', format= '%Y-%m-%d')
