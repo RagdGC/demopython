@@ -1,6 +1,7 @@
 import datetime
-from flask import Blueprint, render_template, json
+from flask import Blueprint, render_template, json, redirect
 import requests
+from flask.helpers import url_for
 from werkzeug import datastructures
 from wtforms import validators
 from wtforms.fields.core import DateField
@@ -32,14 +33,15 @@ def editarempleado(id):
 @bp.route('/<int:id>/editar', methods=["POST"])
 def guardarempleado(id):
     form = EmpleadoForm()
-    form.validate()
-    endpoint = urlapi + "empleados/" + str(id)
-    empleadoactualizar = {"employee_id": form.employee_id.data,
-    "name": form.name.data,
-    "age": form.age.data,
-    "position": form.position.data,
-    "fechaingreso": form.fechaingreso.data.isoformat() }
-    # resultado = requests.put(endpoint, json = empleadoactualizar )
+    if form.validate():
+        endpoint = urlapi + "empleados/" + str(id)
+        empleadoactualizar = {"employee_id": form.employee_id.data,
+        "name": form.name.data,
+        "age": form.age.data,
+        "position": form.position.data,
+        "fechaingreso": form.fechaingreso.data.isoformat() }
+        resultado = requests.put(endpoint, json = empleadoactualizar)
+        return redirect(url_for("empleados.listaempleados"))
     return render_template("forms/editar.html", form = form)
 
 from flask_wtf import FlaskForm

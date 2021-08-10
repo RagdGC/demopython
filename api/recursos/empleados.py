@@ -74,7 +74,7 @@ class getempleado(Resource):
             empleadoactualizar.name = reg['name']
             empleadoactualizar.age = reg['age']
             empleadoactualizar.position = reg['position']
-            empleadoactualizar.fechaingreso = reg['fechaingreso']
+            empleadoactualizar.fechaingreso = datetime.date.fromisoformat(reg['fechaingreso'])
             db.session.merge(empleadoactualizar)
             db.session.commit()
             return 201

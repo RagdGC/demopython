@@ -14,8 +14,9 @@
             <a class="col-3" href="{{ url_for('empleados.consultarempleado', id =empleado.id) }}">{{empleado.name}}</a>
             <span class="col-1">{{empleado.age}}</span>
             <span class="col-3">{{empleado.position}}</span>
-            <a class="col-2" href="{{ url_for('empleados.editarempleado', id =empleado.employee_id) }}">Editar</a>
-            <a class="col-2" href="{{ url_for('empleados.eliminarempleado', id =empleado.employee_id) }}">Eliminar</a>
+            <a class="col-1" href="{{ url_for('empleados.editarempleado', id =empleado.employee_id) }}">Editar</a>
+            <a class="col-1" href="{{ url_for('forms.editarempleado', id =empleado.employee_id) }}">Wtforms</a>
+            <a class="col-1" href="{{ url_for('empleados.eliminarempleado', id =empleado.employee_id) }}">Eliminar</a>
         </li>
         <hr>
         {% endfor %}
