@@ -1,0 +1,51 @@
+{% extends "_layout.html" %}
+{% from "forms/_helperfield.html" import render_errors %}
+
+{% block titulo %}Ejemplo Wtforms{% endblock %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <h4>Editar empleado</h4>
+    </div>
+    <form method="POST">
+        <div class="form-group row">
+            {{form.employee_id.label(class="col-2 col-form-label")}}
+            <div class="col-2">
+                {{form.employee_id(class="form-control")}}
+            </div>
+            {{ render_errors(form.employee_id) }}
+        </div>
+        <div class="form-group row">
+            {{form.name.label(class="col-2 col-form-label")}}
+            <div class="col-4">
+                {{form.name(class="form-control")}}
+            </div>
+            {{ render_errors(form.name) }}
+        </div>
+        <div class="form-group row">
+            {{form.age.label(class="col-2 col-form-label")}}
+            <div class="col-2">
+                {{form.age(class="form-control")}}
+            </div>
+            {{ render_errors(form.age) }}
+        </div>
+        <div class="form-group row">
+            {{form.position.label(class="col-2 col-form-label")}}
+            <div class="col-4">
+                {{form.position(class="form-control")}}
+            </div>
+            {{ render_errors(form.position) }}
+        </div>
+        
+        <div class="row">
+            <div class="col-3">
+                <input class="btn btn-primary" type="submit" value="Guardar empleado">
+            </div>
+            <div class="col-3">
+                <input class="btn btn-secondary" type="reset" value="Restablecer formulario">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

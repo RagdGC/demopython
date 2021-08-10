@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
+from sqlalchemy import ForeignKey
  
 db = SQLAlchemy()
  
@@ -25,6 +27,7 @@ class EstadoModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
+    children = relationship("MunicipioModel")
 
     def __init__(self) -> None:
         super().__init__()
@@ -40,7 +43,7 @@ class MunicipioModel(db.Model):
     __tablename__ = "municipio"
 
     id = db.Column(db.Integer, primary_key=True)
-    estado_id = db.Column(db.Integer)
+    estado_id = db.Column(db.Integer, ForeignKey('estado.id'))
     nombre = db.Column(db.String(100))
 
     def __init__(self) -> None:
