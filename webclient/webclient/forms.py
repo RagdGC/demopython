@@ -1,11 +1,11 @@
-import datetime
 from flask import Blueprint, render_template, json, redirect
-import requests
 from flask.helpers import url_for
-from werkzeug import datastructures
-from wtforms import validators
 from wtforms.fields.core import DateField
+from flask_wtf import FlaskForm
+from wtforms import StringField, IntegerField
+from wtforms.validators import DataRequired, Length, NumberRange
 import datetime
+import requests
 
 urlapi = 'http://localhost:5001/'
 
@@ -43,10 +43,6 @@ def guardarempleado(id):
         resultado = requests.put(endpoint, json = empleadoactualizar)
         return redirect(url_for("empleados.listaempleados"))
     return render_template("forms/editar.html", form = form)
-
-from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired, Length, NumberRange
 
 class EmpleadoForm(FlaskForm):
     employee_id = IntegerField('Id Empleado', validators=[DataRequired()])
